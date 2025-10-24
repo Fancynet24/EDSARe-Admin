@@ -110,6 +110,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
         title,
         author,
         year,
+        file_url: "",
         created_at: new Date().toISOString()
       };
     } else if (category === "course_materials") {
@@ -141,6 +142,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
 
       insertData = {
         title,
+        file_url: "",
         created_at: new Date().toISOString()
       };
     } else if (category === "sample_teaching_notes") {
@@ -167,6 +169,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
         icon: null,
         route: null,
         link: null,
+        file_url: "",
         created_at: new Date().toISOString()
       };
     }
@@ -197,7 +200,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
       .getPublicUrl(filePath);
     
     // Add file_url where applicable
-    if (category === "past_questions" || category === "course_materials") {
+    if (category === "past_questions" || category === "course_materials"||category === "books" || category === "teacher_learner_resources" || category === "extras" || category === "sample_teaching_notes") {
       insertData.file_url = urlData.publicUrl;
     }
 
