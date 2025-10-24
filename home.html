@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EDSARe Admin Panel - Upload Resources</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📚 EDSARe Admin Panel</h1>
+    <p>Upload and manage educational resources</p>
+  </header>
+
+  <section class="form-section">
+    <form id="uploadForm">
+      <!-- Category -->
+      <div class="form-group">
+        <label for="categorySelect">📂 Category *</label>
+        <select id="categorySelect" required>
+          <option value="">Select category...</option>
+          <option value="past_questions">📝 Past Questions</option>
+          <option value="books">📖 Books</option>
+          <option value="course_materials">📚 Course Materials</option>
+          <option value="teacher_learner_resources">👨‍🏫 TLRs</option>
+          <option value="sample_teaching_notes">📋 Sample Teaching Notes</option>
+          <option value="extras">✨ Extras</option>
+        </select>
+      </div>
+
+      <!-- Past Questions Fields -->
+      <div id="pastQuestionsFields">
+        <div class="form-group">
+          <label for="levelSelect">🎓 Level *</label>
+          <select id="levelSelect">
+            <option value="">Select level...</option>
+            <option value="Level 100">Level 100</option>
+            <option value="Level 200">Level 200</option>
+            <option value="Level 300">Level 300</option>
+            <option value="Level 400">Level 400</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>📅 Semester *</label>
+          <div class="semester-options">
+            <label>
+              <input type="radio" name="semester" value="1" />
+              <span class="semester-card green">🟢 Semester 1</span>
+            </label>
+            <label>
+              <input type="radio" name="semester" value="2" />
+              <span class="semester-card blue">🔵 Semester 2</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="courseCode">🔢 Course Code *</label>
+          <input type="text" id="courseCode" placeholder="e.g., CSC101" />
+        </div>
+
+        <div class="form-group">
+          <label for="courseTitle">📖 Course Title *</label>
+          <input type="text" id="courseTitle" placeholder="e.g., Introduction to Programming" />
+        </div>
+
+        <div class="form-group">
+          <label for="year">📆 Academic Year *</label>
+          <input type="text" id="year" placeholder="e.g., 2023/2024" pattern="\d{4}/\d{4}" title="Format: YYYY/YYYY" />
+        </div>
+
+        <div class="form-group">
+          <label for="lecturer">👨‍🏫 Lecturer (Optional)</label>
+          <input type="text" id="lecturer" placeholder="e.g., Dr. John Doe" />
+        </div>
+      </div>
+
+      <!-- Other Categories Fields -->
+      <div id="otherCategoryFields">
+        <div class="form-group">
+          <label for="title">📝 Title *</label>
+          <input type="text" id="title" placeholder="Resource Title" />
+        </div>
+
+        <div class="form-group">
+          <label for="otherYear">📆 Year (Optional)</label>
+          <input type="text" id="otherYear" placeholder="e.g., 2023/2024" />
+        </div>
+
+        <div class="form-group">
+          <label for="author">✍️ Author (Optional)</label>
+          <input type="text" id="author" placeholder="Author Name" />
+        </div>
+      </div>
+
+      <!-- File Upload -->
+      <div class="form-group">
+        <label for="fileUpload">📁 File Upload *</label>
+        <div class="upload-box">
+          <input type="file" id="fileUpload" required />
+          <label for="fileUpload" style="cursor: pointer; width: 100%;">
+            <div class="upload-icon">📄</div>
+            <p>Click to upload file</p>
+            <p class="hint">or drag and drop</p>
+            <p id="fileName" class="file-name"></p>
+          </label>
+        </div>
+      </div>
+
+      <div id="progressContainer" class="progress hidden">
+        <div id="progressBar"></div>
+      </div>
+      <p id="progressText" class="hidden"></p>
+
+      <button type="submit" id="submitBtn">🚀 Upload Resource</button>
+    </form>
+
+    <div id="statusMessage" class="hidden">
+      <div id="statusBox"></div>
+    </div>
+  </section>
+
+  <section class="recent-section">
+    <h2>📋 Recent Uploads</h2>
+    <div id="recentUploads" class="recent-list">
+      <p>Loading recent uploads...</p>
+    </div>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
